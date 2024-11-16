@@ -32,7 +32,6 @@ function nextQuestion(jumpToQuestion) {
         currentPage++;
         if (currentPage < totalPages) {
             pages[currentPage].style.display = 'block';
-        } else {
         }
     }
 }
@@ -79,6 +78,17 @@ function startQuestionnaire() {
     document.getElementById('home-page').style.display = 'none';
     document.getElementById('consent-page').style.display = 'block';
     currentPage = 1;
+}
+
+function returnToHome() {
+    if (confirm("En retournant à la page d'accueil, les données du questionnaire en cours ne seront pas sauvegardées. Voulez-vous continuer ?")) {
+        document.querySelector(".error").innerHTML = "";
+        pages[currentPage].style.display = 'none';
+        currentPage = 0;
+        if (currentPage < totalPages) {
+            pages[currentPage].style.display = 'block';
+        }
+    }
 }
 
 function submitForm(event) {
