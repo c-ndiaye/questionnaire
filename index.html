@@ -29,7 +29,7 @@
                 <div id="consent-page" class="question-page page" style="display:none;">
                     <h2>Notice de Consentement</h2>
                     <p>Etes-vous d’accord avec ce que je viens de dire et vous êtes d’accord pour participer à l’étude ?</p>
-                    <button type="button" onclick="nextQuestion(document.querySelector('[name=\'q19\']'))">Oui</button>
+                    <button type="button" onclick="nextQuestion()">Oui</button>
                 </div>
 
                 <div id="age-page" class="question-page page" style="display:none;">
@@ -200,7 +200,7 @@
                     <input type="radio" name="q19" value="Oui"> Oui<br>
                     <input type="radio" name="q19" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
-                    <button type="button" onclick="nextQuestion(document.querySelector('[name=\'q21\']'))">Suivant</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
     
                 <div class="question-page page">
@@ -221,7 +221,7 @@
                     <input type="radio" name="q21" value="Non"> Non<br>
                     <input type="radio" name="q21" value="Ne sait pas"> Ne sait pas<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
-                    <button type="button" onclick="nextQuestion(document.querySelector('.q23'))">Suivant</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
     
                 <div class="question-page page">
@@ -357,3 +357,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!-- Ça s'écrit comme ça les sauts de pages -->
+<!-- <button type="button" onclick="nextQuestion(document.querySelector('[name=\'q21\']'))">Suivant</button> -->
