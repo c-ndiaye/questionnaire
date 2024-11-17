@@ -36,18 +36,6 @@ function nextQuestion(jumpToQuestion) {
     }
 }
 
-function validateAndNext() {
-    const q7Input = document.getElementById('q7');
-    const value = parseInt(q7Input.value, 10); // Convertir la valeur en nombre entier
-
-    if (isNaN(value) || value < 0) {
-        alert("Veuillez entrer un nombre valide d'enfants.");
-    } else if (value === 0) {
-        alert("Vous ne pouvez pas continuer à la question suivante si vous avez 0 enfant.");
-    } else {
-        nextQuestion(); // Fonction pour aller à la question suivante
-    }
-}
 function prevQuestion() {    
     if (currentPage > 0) {
         pages[currentPage].style.display = 'none';
