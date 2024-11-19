@@ -112,6 +112,26 @@ function submitForm(event) {
     // });
 }
 
+// Fonction pour sauter à une page spécifique
+function skipTo(pageId) {
+    // Récupérer toutes les pages
+    const pages = document.querySelectorAll('.question-page');
+
+    // Masquer toutes les pages
+    pages.forEach(page => {
+        page.style.display = 'none';
+    });
+
+    // Afficher la page ciblée
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.style.display = 'block';
+    } else {
+        console.error(`Page avec l'ID "${pageId}" introuvable.`);
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     pages.forEach((page, index) => {
         if (index !== 0) {

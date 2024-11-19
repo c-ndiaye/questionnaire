@@ -153,9 +153,11 @@
                 <div id="knowledge-page-1" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Avez-vous déjà entendu parler des cancers féminins ?</h3>
-                    <input type="radio" name="q_b1" value="Oui" onclick="showNext('knowledge-page-2')"> Oui<br>
-                    <input type="radio" name="q_b1" value="Non" onclick="skipTo('knowledge-page-9')"> Non<br>
+                    <input type="radio" name="q_b1" value="Oui" > Oui<br>
+                    <input type="radio" name="q_b1" value="Non" > Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('knowledge-page-9')">Suivant si Non</button>
                 </div>
                 
                 <div id="knowledge-page-2" class="question-page page" style="display:none;">
@@ -195,9 +197,11 @@
                 <div id="knowledge-page-5" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Connaissez-vous les facteurs de risque de cancers féminins ?</h3>
-                    <input type="radio" name="q_b5" value="Oui" onclick="showNext('knowledge-page-6')"> Oui<br>
-                    <input type="radio" name="q_b5" value="Non" onclick="skipTo('knowledge-page-7')"> Non<br>
+                    <input type="radio" name="q_b5" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b5" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('knowledge-page-7')">Suivant si Non</button>
                 </div>
                 
                 <div id="knowledge-page-6" class="question-page page" style="display:none;">
@@ -211,14 +215,16 @@
                 <div id="knowledge-page-7" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Connaissez-vous les symptômes de cancers féminins ?</h3>
-                    <input type="radio" name="q_b7" value="Oui" onclick="showNext('knowledge-page-8')"> Oui<br>
-                    <input type="radio" name="q_b7" value="Non" onclick="skipTo('knowledge-page-9')"> Non<br>
+                    <input type="radio" name="q_b7" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b7" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('knowledge-page-9')">Suivant si Non</button>
                 </div>
                 
                 <div id="knowledge-page-8" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
-                    <h3>Parmi les propositions suivantes, lesquelles vous semblent être des signes ou symptômes de cancers féminins ?</h3>
+                    <h3>Parmi les propositions suivantes, lesquelles vous semblent être des signes ou symptômes de cancers féminins ? (Lire la liste)</h3>
                     <input type="checkbox" name="q_b8" value="Saignement en dehors des règles"> Saignement en dehors des règles<br>
                     <input type="checkbox" name="q_b8" value="Leucorrhées striées de sang"> Leucorrhées striées de sang<br>
                     <input type="checkbox" name="q_b8" value="Douleurs pelviennes"> Douleurs pelviennes<br>
@@ -277,9 +283,11 @@
                 <div id="knowledge-page-13" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Avez-vous déjà entendu parler du Papilloma Virus Humain (HPV) ?</h3>
-                    <input type="radio" name="q_b13" value="Oui" onclick="showNext('knowledge-page-14')"> Oui<br>
-                    <input type="radio" name="q_b13" value="Non" onclick="skipTo('knowledge-page-20')"> Non<br>
+                    <input type="radio" name="q_b13" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b13" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('knowledge-page-20')">Suivant si Non</button>
                 </div>
                 
                 <div id="knowledge-page-14" class="question-page page" style="display:none;">
@@ -315,10 +323,12 @@
                 <div id="knowledge-page-17" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Pensez-vous qu’il existe un vaccin contre l’HPV ?</h3>
-                    <input type="radio" name="q_b17" value="Oui" onclick="showNext('knowledge-page-18')"> Oui<br>
-                    <input type="radio" name="q_b17" value="Non" onclick="skipTo('knowledge-page-20')"> Non<br>
-                    <input type="radio" name="q_b17" value="Ne sait pas" onclick="skipTo('knowledge-page-20')"> Ne sait pas<br>
+                    <input type="radio" name="q_b17" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b17" value="Non"> Non<br>
+                    <input type="radio" name="q_b17" value="Ne sait pas"> Ne sait pas<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('knowledge-page-20')">Suivant si Non ou Ne sait pas</button>
                 </div>
                 
                 <div id="knowledge-page-18" class="question-page page" style="display:none;">
@@ -358,9 +368,11 @@
                 <div id="knowledge-page-21" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Connaissez-vous les facteurs de risque de cancer du sein ?</h3>
-                    <input type="radio" name="q_b21" value="Oui" onclick="showNext('knowledge-page-22')"> Oui<br>
-                    <input type="radio" name="q_b21" value="Non" onclick="skipTo('knowledge-page-23')"> Non<br>
+                    <input type="radio" name="q_b21" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b21" value="Non" > Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('knowledge-page-23')">Suivant si Non</button>
                 </div>
 
                 <div id="knowledge-page-22" class="question-page page" style="display:none;">
@@ -374,14 +386,16 @@
                 <div id="knowledge-page-23" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Connaissez-vous les symptômes du cancer du sein ?</h3>
-                    <input type="radio" name="q_b23" value="Oui" onclick="showNext('knowledge-page-24')"> Oui<br>
-                    <input type="radio" name="q_b23" value="Non" onclick="skipTo('knowledge-page-25')"> Non<br>
+                    <input type="radio" name="q_b23" value="Oui" > Oui<br>
+                    <input type="radio" name="q_b23" value="Non" > Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('knowledge-page-25')">Suivant si Non</button>
                 </div>
 
                 <div id="knowledge-page-24" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
-                    <h3>Si oui, quels sont ces signes ou symptômes ?</h3>
+                    <h3>Si oui, quels sont ces signes ou symptômes ? (Ne pas lire la liste, laisser la personne s’exprimer et cocher ce qu’elle cite)</h3>
                     <textarea name="q_b24" placeholder="Citez ici..."></textarea><br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
@@ -389,7 +403,7 @@
 
                 <div id="knowledge-page-25" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
-                    <h3>Quels sont selon vous les profils des femmes qui représentent un risque élevé de cancer de l’endomètre ?</h3>
+                    <h3>Quels sont selon vous les profils des femmes qui représentent un risque élevé de cancer de l’endomètre ? (Ne pas lire la liste)</h3>
                     <textarea name="q_b25" placeholder="Listez ici..."></textarea><br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
@@ -442,10 +456,316 @@
                 </div>
 
 
+                <div id="knowledge-page-31" class="question-page page" style="display:none;">
+                    <h2>B. Connaissances</h2>
+                    <h3>Connaissez-vous une association ou une Fondation impliquée dans le soutien, l’accompagnement ou la lutte contre le Cancer en Île de France ? </h3>
+                    <input type="radio" name="q_b30" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b30" value="Non"> Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('attitudes-page-1')">Suivant si Non</button>
+                </div>
+
+                <div id="knowledge-page-32" class="question-page page" style="display:none;">
+                    <h2>B. Connaissances</h2>
+                    <h3>Si oui, pouvez en citer une ou plusieurs </h3>
+                    <textarea name="q_b32" placeholder="Citez ici..."></textarea><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+
+
+                <div id="attitudes-page-1" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Quand date votre dernière consultation chez un gynécologue ?</h3>
+                    <input type="radio" name="q_c1" value="<1 mois"> Moins d’un mois<br>
+                    <input type="radio" name="q_c1" value="De 1 à 6 mois"> De 1 à 6 mois<br>
+                    <input type="radio" name="q_c1" value="De 6 mois à 1 an"> De 6 mois à 1 an<br>
+                    <input type="radio" name="q_c1" value=">1 an"> Plus d’un an<br>
+                    <input type="radio" name="q_c1" value="Jamais consulté"> Jamais consulté<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-2" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Êtes-vous favorable au dépistage systématique des cancers féminins ?</h3>
+                    <input type="radio" name="q_c2" value="Oui"> Oui<br>
+                    <input type="radio" name="q_c2" value="Non"> Non<br>
+                    <input type="radio" name="q_c2" value="Ne sait pas"> Ne sait pas<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-3" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Si vous soupçonnez qu’une personne proche de vous souffre d’un cancer, que lui recommanderiez-vous ? (Ne pas lire la suite)</h3>
+                    <input type="checkbox" name="q_c3" value="S’isoler"> S’isoler<br>
+                    <input type="checkbox" name="q_c3" value="Consulter un médecin"> Consulter un médecin<br>
+                    <input type="checkbox" name="q_c3" value="Consulter un religieux"> Consulter un religieux<br>
+                    <input type="checkbox" name="q_c3" value="En parler à la famille ou à des amis"> En parler à la famille ou à des amis<br>
+                    <input type="checkbox" name="q_c3" value="Contacter un centre de dépistage"> Contacter un centre de dépistage<br>
+                    <input type="checkbox" name="q_c3" value="Autre"> Autre (précisez) : <input type="text" name="q_c3_autre"><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-4" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Accepteriez-vous de faire vacciner votre fille ou vous-même contre l’infection à l’HPV ?</h3>
+                    <input type="radio" name="q_c4" value="Oui" > Oui<br>
+                    <input type="radio" name="q_c4" value="Non"> Non<br>
+                    <input type="radio" name="q_c4" value="Ne sait pas"> Ne sait pas<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('attitudes-page-6')">Suivant si Oui</button>
+                </div>
+                
+                <div id="attitudes-page-5" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Si non, pour quelles raisons ne voulez-vous pas le faire ? (Ne pas lire la liste)</h3>
+                    <input type="checkbox" name="q_c5" value="Personne ne m’en a parlé"> Personne ne m’en a parlé<br>
+                    <input type="checkbox" name="q_c5" value="Aucun médecin ne l’a proposé"> Aucun médecin ne l’a proposé<br>
+                    <input type="checkbox" name="q_c5" value="Manque d’informations sur le vaccin"> Manque d’informations sur le vaccin<br>
+                    <input type="checkbox" name="q_c5" value="Peur des effets secondaires"> Peur des effets secondaires<br>
+                    <input type="checkbox" name="q_c5" value="Doute de l’efficacité"> Doute de l’efficacité<br>
+                    <input type="checkbox" name="q_c5" value="Crainte de démarrer une activité sexuelle"> Crainte qu’il incite votre fille à démarrer une activité sexuelle<br>
+                    <input type="checkbox" name="q_c5" value="Coût élevé"> Coût élevé<br>
+                    <input type="checkbox" name="q_c5" value="Trop de vaccins"> Trop de vaccins<br>
+                    <input type="checkbox" name="q_c5" value="Pas de confiance dans les vaccins"> Pas de confiance dans les vaccins<br>
+                    <input type="checkbox" name="q_c5" value="Autre"> Autre (précisez) : <input type="text" name="q_c5_autre"><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-6" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Aujourd’hui, l’âge de la vaccination contre l’HPV a été avancé à 11 ans (au lieu de 14 ans). L’auriez-vous fait si on vous l’avait proposé à 11 ans ?</h3>
+                    <input type="radio" name="q_c6" value="Oui"> Oui<br>
+                    <input type="radio" name="q_c6" value="Non"> Non<br>
+                    <input type="radio" name="q_c6" value="Ne sait pas"> Ne sait pas<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-7" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Pensez-vous que le dépistage du cancer du col est important ?</h3>
+                    <input type="radio" name="q_c7" value="Oui"> Oui<br>
+                    <input type="radio" name="q_c7" value="Non"> Non<br>
+                    <input type="radio" name="q_c7" value="Ne sait pas"> Ne sait pas<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-8" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Avez-vous déjà conseillé quelqu’un de se faire dépister ?</h3>
+                    <input type="radio" name="q_c8" value="Oui"> Oui<br>
+                    <input type="radio" name="q_c8" value="Non"> Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-9" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>À votre avis, quels seraient les avantages du dépistage du cancer ? (laisser parler l’enquêtée)</h3>
+                    <textarea name="q_c9" placeholder="Votre réponse..."></textarea><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-10" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>Recherchez-vous spontanément de l’information à propos des cancers féminins ?</h3>
+                    <input type="radio" name="q_c10" value="Jamais"> Jamais<br>
+                    <input type="radio" name="q_c10" value="Parfois"> Parfois<br>
+                    <input type="radio" name="q_c10" value="Très souvent"> Très souvent<br>
+                    <input type="radio" name="q_c10" value="Toujours"> Toujours<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="attitudes-page-11" class="question-page page" style="display:none;">
+                    <h2>C. Attitudes</h2>
+                    <h3>À quelle fréquence utilisez-vous les sources d’informations suivantes pour vous tenir informé(e) à propos des cancers féminins ? (Lire la liste ci-dessous)</h3>
+                    <label>Télévision</label><br>
+                    <input type="radio" name="q_c11_tv" value="Jamais"> Jamais<br>
+                    <input type="radio" name="q_c11_tv" value="Parfois"> Parfois<br>
+                    <input type="radio" name="q_c11_tv" value="Très souvent"> Très souvent<br>
+                    <input type="radio" name="q_c11_tv" value="Toujours"> Toujours<br>
+                    
+                    <label>Presse papier</label><br>
+                    <input type="radio" name="q_c11_paper" value="Jamais"> Jamais<br>
+                    <input type="radio" name="q_c11_paper" value="Parfois"> Parfois<br>
+                    <input type="radio" name="q_c11_paper" value="Très souvent"> Très souvent<br>
+                    <input type="radio" name="q_c11_paper" value="Toujours"> Toujours<br>
+                
+                    <label>Radio</label><br>
+                    <input type="radio" name="q_c11_radio" value="Jamais"> Jamais<br>
+                    <input type="radio" name="q_c11_radio" value="Parfois"> Parfois<br>
+                    <input type="radio" name="q_c11_radio" value="Très souvent"> Très souvent<br>
+                    <input type="radio" name="q_c11_radio" value="Toujours"> Toujours<br>
+                
+                    <label>Facebook</label><br>
+                    <input type="radio" name="q_c11_fb" value="Jamais"> Jamais<br>
+                    <input type="radio" name="q_c11_fb" value="Parfois"> Parfois<br>
+                    <input type="radio" name="q_c11_fb" value="Très souvent"> Très souvent<br>
+                    <input type="radio" name="q_c11_fb" value="Toujours"> Toujours<br>
+                
+                    <label>Autres réseaux sociaux</label><br>
+                    <input type="radio" name="q_c11_other_social" value="Jamais"> Jamais<br>
+                    <input type="radio" name="q_c11_other_social" value="Parfois"> Parfois<br>
+                    <input type="radio" name="q_c11_other_social" value="Très souvent"> Très souvent<br>
+                    <input type="radio" name="q_c11_other_social" value="Toujours"> Toujours<br>
+                
+                    <label>Personnels de santé</label><br>
+                    <input type="radio" name="q_c11_health" value="Jamais"> Jamais<br>
+                    <input type="radio" name="q_c11_health" value="Parfois"> Parfois<br>
+                    <input type="radio" name="q_c11_health" value="Très souvent"> Très souvent<br>
+                    <input type="radio" name="q_c11_health" value="Toujours"> Toujours<br>
+                
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-1" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Avez-vous déjà réalisé un dépistage de cancers féminins ?</h3>
+                    <input type="radio" name="q_d1" value="Oui"> Oui<br>
+                    <input type="radio" name="q_d1" value="Non"> Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('ractices-page-4')">Suivant si Non</button>
+                </div>
+                
+                <div id="practices-page-2" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Si oui, lequel ? (Ne pas lire la liste)</h3>
+                    <input type="checkbox" name="q_d2" value="Frottis cervico-vaginal"> Frottis cervico-vaginal<br>
+                    <input type="checkbox" name="q_d2" value="Imprégnation du col par acide acétique/Lugol"> Imprégnation du col par acide acétique/Lugol<br>
+                    <input type="checkbox" name="q_d2" value="Mammographie"> Mammographie<br>
+                    <input type="checkbox" name="q_d2" value="Autre"> Autre (précisez) : <input type="text" name="q_d2_autre"><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-3" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Où est-ce que l’examen a été réalisé ?</h3>
+                    <input type="checkbox" name="q_d3" value="Cabinet privé"> Cabinet privé<br>
+                    <input type="checkbox" name="q_d3" value="Centre de santé publique"> Centre de santé publique<br>
+                    <input type="checkbox" name="q_d3" value="Hôpital public"> Hôpital public<br>
+                    <input type="checkbox" name="q_d3" value="Autre"> Autre (précisez) : <input type="text" name="q_d3_autre"><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-4" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Si vous n’avez jamais réalisé un dépistage de cancers féminins, quelles sont les raisons ? (Ne pas lire la liste)</h3>
+                    <input type="checkbox" name="q_d4" value="Sexuellement non active"> Sexuellement non active<br>
+                    <input type="checkbox" name="q_d4" value="Trop cher"> Trop cher<br>
+                    <input type="checkbox" name="q_d4" value="Aucun symptôme"> Aucun symptôme<br>
+                    <input type="checkbox" name="q_d4" value="Pas de prescription médicale"> Pas de prescription médicale<br>
+                    <input type="checkbox" name="q_d4" value="Peur de la douleur"> Peur de la douleur<br>
+                    <input type="checkbox" name="q_d4" value="Ignorance de la possibilité"> Ignorance de la possibilité<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-5" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Accepteriez-vous que vous ou votre fille soit examinée pour un dépistage du cancer ?</h3>
+                    <input type="radio" name="q_d5" value="Oui" > Oui<br>
+                    <input type="radio" name="q_d5" value="Non" > Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('practices-page-7')">Suivant si Oui</button>
+                </div>
+                
+                <div id="practices-page-6" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Si non, pourquoi ? (Donnez les raisons)</h3>
+                    <textarea name="q_d6" placeholder="Précisez ici..."></textarea><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-7" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Si vous n’avez jamais bénéficié d’un dépistage systématique, quelles peuvent être les raisons ?</h3>
+                    <input type="checkbox" name="q_d7" value="Âge (encore jeune)"> Âge (encore jeune)<br>
+                    <input type="checkbox" name="q_d7" value="Pas reçu le courrier d’invitation"> Pas reçu le courrier d’invitation<br>
+                    <input type="checkbox" name="q_d7" value="Manque de Sécurité sociale"> Manque de Sécurité sociale<br>
+                    <input type="checkbox" name="q_d7" value="Négligence"> Négligence<br>
+                    <input type="checkbox" name="q_d7" value="Peur/Angoisse d’avoir un cancer"> Peur/Angoisse d’avoir un cancer<br>
+                    <input type="checkbox" name="q_d7" value="Méconnaissance"> Méconnaissance<br>
+                    <input type="checkbox" name="q_d7" value="Pas d’antécédent familial"> Pas d’antécédent familial<br>
+                    <input type="checkbox" name="q_d7" value="Pas de symptômes"> Pas de symptômes<br>
+                    <input type="checkbox" name="q_d7" value="Autre"> Autre (précisez) : <input type="text" name="q_d7_autre"><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-8" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Connaissez-vous l’autopalpation des seins ?</h3>
+                    <input type="radio" name="q_d8" value="Oui" > Oui<br>
+                    <input type="radio" name="q_d8" value="Non" > Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                    <button type="button" onclick="skipTo('practices-page-11')">Suivant si Non</button>
+                </div>
+                
+                <div id="practices-page-9" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Si oui, la pratiquez-vous ?</h3>
+                    <input type="radio" name="q_d9" value="Oui"> Oui<br>
+                    <input type="radio" name="q_d9" value="Non" onclick="showNext('practices-page-10')"> Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-10" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Si non, pourquoi ne la pratiquez-vous pas ?</h3>
+                    <textarea name="q_d10" placeholder="Précisez ici..."></textarea><br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-11" class="question-page page" style="display:none;">
+                    <h3>Avez-vous déjà bénéficié d’un examen clinique des seins par un personnel de santé ?</h3>
+                    <h2>D. PRATIQUES</h2>
+                    <input type="radio" name="q_d11" value="Oui"> Oui<br>
+                    <input type="radio" name="q_d11" value="Non"> Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
+                <div id="practices-page-12" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Avez-vous déjà eu un examen radiologique des seins (mammographie/échographie) ?</h3>
+                    <input type="radio" name="q_d12" value="Oui" onclick="showNext('practices-page-13')"> Oui<br>
+                    <input type="radio" name="q_d12" value="Non" onclick="nextQuestion()"> Non<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                </div>
+                
+                <div id="practices-page-13" class="question-page page" style="display:none;">
+                    <h2>D. PRATIQUES</h2>
+                    <h3>Si oui, précisez :</h3>
+                    <input type="checkbox" name="q_d13" value="Échographie mammaire"> Échographie mammaire<br>
+                    <input type="checkbox" name="q_d13" value="Mammographie"> Mammographie<br>
+                    <button type="button" onclick="prevQuestion()">Précédent</button>
+                    <button type="button" onclick="nextQuestion()">Suivant</button>
+                </div>
+                
                 <div id="end-page" class="page" style="display:none;">
                     <h2>Merci d'avoir participé à notre questionnaire !</h2>
                     <button type="submit" onclick="submitForm()">Soumettre</button>
                 </div>
+              
             </form>
         </main>
     </div>
