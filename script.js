@@ -40,8 +40,6 @@ function prevQuestion() {
     if (currentPage > 0) {
         pages[currentPage].style.display = 'none';
         if (pageHistory.length > 0) {
-            console.log('pageHistory.slice: ', pageHistory.slice(-1)[0])
-            console.log('pageHistory: ', pageHistory);
             currentPage = pageHistory.slice(-1)[0];
             pageHistory.pop();
             pages[pageHistory[pageHistory.length-1]].style.display = 'block';
