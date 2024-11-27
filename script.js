@@ -5,7 +5,7 @@ const pageHistory = [];
 
 function nextQuestion(jumpToQuestion) {
     const currentPageElement = pages[currentPage];
-    
+    console.log('currentpageelement', currentPageElement);
     let currentPageJumpedIndex = -1;
 
     if (jumpToQuestion instanceof HTMLElement) {
@@ -112,10 +112,19 @@ function submitForm(event) {
     // });
 }
 
-// Fonction pour sauter à une page spécifique
 function skipTo(pageId) {
     // Récupérer toutes les pages
+    console.log('pageId', pageId);
+    for (let i = 0; i < totalPages; i++) {
+        if (document.querySelectorAll('.page')[i].id === pageId) {
+            currentPage = i;
+            break;
+        }
+    }
     const pages = document.querySelectorAll('.question-page');
+
+    // document.getElementById(pageId).style.display = 'none';
+    pageHistory.push(currentPage);
 
     // Masquer toutes les pages
     pages.forEach(page => {
@@ -126,10 +135,18 @@ function skipTo(pageId) {
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
         targetPage.style.display = 'block';
+
+        // Mettre à jour currentPage avec l'index de la page ciblée
+        // currentPage = Array.from(pages).indexOf(targetPage);
+        // console.log('currentpage',currentPage)
+        // if (currentPage === -1) {
+        //     console.error(`Page avec l'ID "${pageId}" introuvable dans la liste des pages.`);
+        // }
     } else {
         console.error(`Page avec l'ID "${pageId}" introuvable.`);
     }
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
