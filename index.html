@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire - Médecins d'Afrique</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -30,8 +32,7 @@
                 <div id="consent-page" class="question-page page" style="display:none;">
                     <h2>Notice de Consentement</h2>
                     <p>Etes-vous d’accord avec ce que je viens de dire et vous êtes d’accord pour participer à l’étude ?</p>
-                    <button type="button" onclick="skipTo('knowledge-page-7')">Oui</button>
-                    <!-- <button type="button" onclick="nextQuestion()">Oui</button> -->
+                    <button type="button" onclick="nextQuestion()">Oui</button>
                 </div>
 
                 <div id="information-page" class="question-page page" style="display:none;">
@@ -62,13 +63,13 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Quelle est votre situation professionnelle actuelle ?</h3>
-                    <input type="radio" name="q3" value="Employée"> Employée<br>
-                    <input type="radio" name="q3" value="Chef d’entreprise/auto-entrepreneuse"> Chef d’entreprise/auto-entrepreneuse<br>
-                    <input type="radio" name="q3" value="Etudiante"> Etudiante<br>
-                    <input type="radio" name="q3" value="Femme au foyer"> Femme au foyer<br>
-                    <input type="radio" name="q3" value="Au chômage"> Au chômage<br>
-                    <input type="radio" name="q3" value="Retraitée"> Retraitée<br>
-                    <input type="radio" name="q3" value="Autre"> Autre<br>
+                    <input type="radio" name="q_a3" value="Employée"> Employée<br>
+                    <input type="radio" name="q_a3" value="Chef d’entreprise/auto-entrepreneuse"> Chef d’entreprise/auto-entrepreneuse<br>
+                    <input type="radio" name="q_a3" value="Etudiante"> Etudiante<br>
+                    <input type="radio" name="q_a3" value="Femme au foyer"> Femme au foyer<br>
+                    <input type="radio" name="q_a3" value="Au chômage"> Au chômage<br>
+                    <input type="radio" name="q_a3" value="Retraitée"> Retraitée<br>
+                    <input type="radio" name="q_a3" value="Autre"> Autre<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -76,11 +77,11 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Quel est votre niveau de revenu mensuel du ménage ?</h3>
-                    <input type="radio" name="q4" value="< 1400 €"> < 1400 €<br>
-                    <input type="radio" name="q4" value="1401 € - 2000 €"> 1401 € - 2000 €<br>
-                    <input type="radio" name="q4" value="2001 € - 3000 €"> 2001 € - 3000 €<br>
-                    <input type="radio" name="q4" value="3001 € - 4000 €"> 3001 € - 4000 €<br>
-                    <input type="radio" name="q4" value="Supérieur à 4000 €"> Supérieur à 4000 €<br>
+                    <input type="radio" name="q_a4" value="< 1400 €"> < 1400 €<br>
+                    <input type="radio" name="q_a4" value="1401 € - 2000 €"> 1401 € - 2000 €<br>
+                    <input type="radio" name="q_a4" value="2001 € - 3000 €"> 2001 € - 3000 €<br>
+                    <input type="radio" name="q_a4" value="3001 € - 4000 €"> 3001 € - 4000 €<br>
+                    <input type="radio" name="q_a4" value="Supérieur à 4000 €"> Supérieur à 4000 €<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -88,10 +89,10 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Quel est votre Niveau d’étude ?</h3>
-                    <input type="radio" name="q5" value="Aucun"> Aucun<br>
-                    <input type="radio" name="q5" value="Primaire"> Primaire<br>
-                    <input type="radio" name="q5" value="Secondaire"> Secondaire<br>
-                    <input type="radio" name="q5" value="Universitaire"> Universitaire<br>
+                    <input type="radio" name="q_a5" value="Aucun"> Aucun<br>
+                    <input type="radio" name="q_a5" value="Primaire"> Primaire<br>
+                    <input type="radio" name="q_a5" value="Secondaire"> Secondaire<br>
+                    <input type="radio" name="q_a5" value="Universitaire"> Universitaire<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -99,10 +100,10 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Quel est votre Statut matrimonial ?</h3>
-                    <input type="radio" name="q6" value="Célibataire"> Célibataire<br>
-                    <input type="radio" name="q6" value="Mariée ou Pacsée"> Mariée ou Pacsée<br>
-                    <input type="radio" name="q6" value="Concubinage"> Concubinage<br>
-                    <input type="radio" name="q6" value="Veuve"> Veuve<br>
+                    <input type="radio" name="q_a6" value="Célibataire"> Célibataire<br>
+                    <input type="radio" name="q_a6" value="Mariée ou Pacsée"> Mariée ou Pacsée<br>
+                    <input type="radio" name="q_a6" value="Concubinage"> Concubinage<br>
+                    <input type="radio" name="q_a6" value="Veuve"> Veuve<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -110,7 +111,7 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Combien d’enfants avez-vous ?</h3>
-                    <input type="number" name="q7" placeholder="Nombre d'enfants" min="0">
+                    <input type="number" name="q_a7" placeholder="Nombre d'enfants" min="0">
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -118,7 +119,7 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Combien de filles avez-vous ?</h3>
-                    <input type="number" name="q8" placeholder="Nombre de filles">
+                    <input type="number" name="q_a8" placeholder="Nombre de filles">
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -126,8 +127,8 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Avez-vous une couverture Maladie ?</h3>
-                    <input type="radio" name="q9" value="Oui"> Oui<br>
-                    <input type="radio" name="q9" value="Non"> Non<br>
+                    <input type="radio" name="q_a9" value="Oui"> Oui<br>
+                    <input type="radio" name="q_a9" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -135,8 +136,8 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Avez-vous une Mutuelle de Santé ?</h3>
-                    <input type="radio" name="q10" value="Oui"> Oui<br>
-                    <input type="radio" name="q10" value="Non"> Non<br>
+                    <input type="radio" name="q_a10" value="Oui"> Oui<br>
+                    <input type="radio" name="q_a10" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -144,9 +145,9 @@
                 <div class="question-page page">
                     <h2>A. Catactéristiques socioprofessionnelles et démographiques</h2>
                     <h3>Quelle(s) langue(s) maîtrisez-vous ?</h3>
-                    <input type="text" name="q11" placeholder="Langue 1">
-                    <input type="text" name="q11" placeholder="Langue 2">
-                    <input type="text" name="q11" placeholder="Langue 3">
+                    <input type="text" name="q_a11" placeholder="Langue 1">
+                    <input type="text" name="q_a11" placeholder="Langue 2">
+                    <input type="text" name="q_a11" placeholder="Langue 3">
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -249,8 +250,8 @@
                 <div id="knowledge-page-10" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Connaissez-vous le frottis cervico-vaginal ?</h3>
-                    <input type="radio" name="q_b10" value="Oui" onclick="nextQuestion()"> Oui<br>
-                    <input type="radio" name="q_b10" value="Non" onclick="nextQuestion()"> Non<br>
+                    <input type="radio" name="q_b10" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b10" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                 </div>
@@ -460,8 +461,8 @@
                 <div id="knowledge-page-31" class="question-page page" style="display:none;">
                     <h2>B. Connaissances</h2>
                     <h3>Connaissez-vous une association ou une Fondation impliquée dans le soutien, l’accompagnement ou la lutte contre le Cancer en Île de France ? </h3>
-                    <input type="radio" name="q_b30" value="Oui"> Oui<br>
-                    <input type="radio" name="q_b30" value="Non"> Non<br>
+                    <input type="radio" name="q_b31" value="Oui"> Oui<br>
+                    <input type="radio" name="q_b31" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
                     <button type="button" onclick="skipTo('attitudes-page-1')">Suivant si Non</button>
@@ -637,7 +638,7 @@
                     <input type="radio" name="q_d1" value="Non"> Non<br>
                     <button type="button" onclick="prevQuestion()">Précédent</button>
                     <button type="button" onclick="nextQuestion()">Suivant</button>
-                    <button type="button" onclick="skipTo('ractices-page-4')">Suivant si Non</button>
+                    <button type="button" onclick="skipTo('practices-page-4')">Suivant si Non</button>
                 </div>
                 
                 <div id="practices-page-2" class="question-page page" style="display:none;">
@@ -764,15 +765,11 @@
                 
                 <div id="end-page" class="page" style="display:none;">
                     <h2>Merci d'avoir participé à notre questionnaire !</h2>
-                    <button type="submit" onclick="submitForm()">Soumettre</button>
+                    <button type="submit">Soumettre</button>
                 </div>
-              
             </form>
         </main>
     </div>
-    <script src="script.js"></script>
+            <script src="script.js"></script>
 </body>
 </html>
-
-<!-- Ça s'écrit comme ça les sauts de pages -->
-<!-- <button type="button" onclick="nextQuestion(document.querySelector('[name=\'q21\']'))">Suivant</button> -->

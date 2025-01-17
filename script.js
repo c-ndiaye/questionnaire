@@ -166,3 +166,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Le formulaire avec l\'ID "questionnaire-form" est introuvable.');
     }
 });
+
+function showNext(pageId) {
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        pages[currentPage].style.display = 'none';
+        currentPage = Array.from(pages).indexOf(targetPage);
+        targetPage.style.display = 'block';
+    } else {
+        console.error(`Page with ID "${pageId}" not found.`);
+    }
+}
