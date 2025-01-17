@@ -96,6 +96,43 @@ function submitForm(event) {
     const formData = new FormData(document.getElementById('questionnaire-form'));
     console.log('formData: ', formData);
 
+ // Récuperer nom enqueteur (exemple). Toutes les données nécessaires devront être récupérées dans formData
+    // const enqueteur_nom = formData.get('enqueteur_nom');
+    // const quartier = formData.get('quartier');
+    // const q_d8 = formData.get('q_d8');
+    // const q_d9 = formData.get('q_d9');
+    // const q_d10 = formData.get('q_d10');
+    // const q_d11 = formData.get('q_d11');
+
+    // Envoi des données au serveur 
+const data = (NameInterviewer: document.querySelector('input[name="NameInterviewer"]').value,
+              DataSheetNumber: document.querySelector('input[name="DataSheetNumber"]').value,
+              QuestionNumber: document.querySelector('input[name="QuestionNumber"]').value,
+              Answer: document.querySelector('input[name="Answer"]').value)
+    // const data = {
+    //   enqueteur_nom: document.querySelector('input[name="enqueteur_nom"]').value,
+    //   quartier: document.querySelector('input[name="quartier"]').value,
+    //   q_d8: document.querySelector('input[name="q_d8"]:checked').value,
+    //   q_d9: document.querySelector('input[name="q_d9"]:checked').value,
+    //   q_d10: document.querySelector('textarea[name="q_d10"]').value,
+    //   q_d11: document.querySelector('input[name="q_d11"]:checked').value
+    // };
+
+    fetch('http://localhost:3000/responses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
     // Simuler l'envoi des données (exemple avec fetch API)
     // fetch('/submit', {
     //     method: 'POST',
