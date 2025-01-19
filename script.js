@@ -3,194 +3,152 @@ const pages = document.querySelectorAll('.page');
 const totalPages = pages.length;
 const pageHistory = [];
 
+// Navigate to the next question or a specific question if jumpToQuestion is provided
 function nextQuestion(jumpToQuestion) {
     const currentPageElement = pages[currentPage];
-    console.log('currentpageelement', currentPageElement);
     let currentPageJumpedIndex = -1;
 
-    if (jumpToQuestion instanceof HTMLElement) {
-        for (let i = 0; i < totalPages; i++) {
-            if (pages[i] === jumpToQuestion.parentElement) {
-                currentPageJumpedIndex = i;
-                break;
-            }
-        }
+    // Check if jumpToQuestion has a parentElement
+    if (jumpToQuestion && jumpToQuestion.parentElement) {
+        currentPageJumpedIndex = Array.from(pages).indexOf(jumpToQuestion.parentElement);
     }
 
+    // Validate the current page
     if (!validatePage(currentPageElement)) {
         return;
     }
-    document.querySelector(".error").innerHTML = "";
+    document.querySelector(".error").textContent = "";
 
+    // Hide the current page and update history
     currentPageElement.style.display = 'none';
     pageHistory.push(currentPage);
 
+    // Determine the next page to show
     if (currentPageJumpedIndex !== -1) {
         currentPage = currentPageJumpedIndex;
-        pages[currentPage].style.display = 'block';
     } else {
         currentPage++;
-        if (currentPage < totalPages) {
-            pages[currentPage].style.display = 'block';
-        }
+    }
+
+    // Show the next page if within bounds
+    if (currentPage < pages.length) {
+        pages[currentPage].style.display = 'block';
     }
 }
 
-function prevQuestion() {    
+// Navigate to the previous question
+function prevQuestion() {
     if (currentPage > 0) {
         pages[currentPage].style.display = 'none';
-        if (pageHistory.length > 0) {
-            currentPage = pageHistory.slice(-1)[0];
-            pageHistory.pop();
-            pages[pageHistory[pageHistory.length-1]].style.display = 'block';
-        } else {
-            currentPage--;
-            pages[currentPage].style.display = 'block';
-        };
+        currentPage = pageHistory.pop() || currentPage - 1;
+        pages[currentPage].style.display = 'block';
     }
 }
 
+// Validate the current page's inputs
 function validatePage(page) {
     const inputs = page.querySelectorAll('input');
     let hasError = false;
-    
-    if (inputs !==  undefined) {
-        for (const input of inputs) {
-            if ((input.type == ('number' || 'text') || input.type == 'textarea') && !Array.from(inputs).some(a => a.value)) {
-                hasError = true;
-            } else if ((input.type == 'radio' && !Array.from(inputs).some(a => a.checked)) || (input.type == 'checkbox' && Array.from(inputs).some(a => a.checked) == false)) {
-                hasError = true;
-            } else if (!Array.from(inputs).some(a => a.value)) {
+
+    // Special case for page "q_a11"
+    if (page.id === "q_a11") {
+        const textInputs = page.querySelectorAll('input[type="text"]');
+        if (Array.from(textInputs).some(input => input.value.trim() !== "")) {
+            return true; // Allow passing to the next question if at least one text input is filled
+        }
+    }
+
+    inputs.forEach(input => {
+        if ((input.type === 'number' || input.type === 'text' || input.type === 'textarea') && !input.value.trim()) {
+            hasError = true;
+        }
+        if (input.type === 'radio' || input.type === 'checkbox') {
+            const groupName = input.name;
+            const groupInputs = page.querySelectorAll(`input[name="${groupName}"]`);
+            if (!Array.from(groupInputs).some(a => a.checked)) {
                 hasError = true;
             }
         }
-    } 
-    
+        if (input.type === 'checkbox') {
+            if (!Array.from(inputs).some(a => a.checked)) {
+                hasError = true;
+            }
+        }
+    });
+
     if (hasError) {
-        //alert('Veuillez remplir tous les champs obligatoires.');
-        document.querySelector(".error").innerHTML = "<span style='color:red'>Veuillez remplir tous les champs obligatoires.</span>";
+        document.querySelector(".error").textContent = "Veuillez remplir tous les champs obligatoires.";
         return false;
     }
 
     return true;
 }
 
+// Start the questionnaire by showing the consent page
 function startQuestionnaire() {
     document.getElementById('home-page').style.display = 'none';
     document.getElementById('consent-page').style.display = 'block';
     currentPage = 1;
 }
 
+// Return to the home page with a confirmation prompt
 function returnToHome() {
     if (confirm("En retournant à la page d'accueil, les données du questionnaire en cours ne seront pas sauvegardées. Voulez-vous continuer ?")) {
-        document.querySelector(".error").innerHTML = "";
+        document.querySelector(".error").textContent = "";
         pages[currentPage].style.display = 'none';
         currentPage = 0;
-        if (currentPage < totalPages) {
-            pages[currentPage].style.display = 'block';
-        }
+        pages[currentPage].style.display = 'block';
     }
 }
 
+// Submit the form data to the server
 function submitForm(event) {
+    event.preventDefault();
     const formData = new FormData(document.getElementById('questionnaire-form'));
-    console.log('formData: ', formData);
+    const data = Object.fromEntries(formData.entries());
 
- // Récuperer nom enqueteur (exemple). Toutes les données nécessaires devront être récupérées dans formData
-    // const enqueteur_nom = formData.get('enqueteur_nom');
-    // const quartier = formData.get('quartier');
-    // const q_d8 = formData.get('q_d8');
-    // const q_d9 = formData.get('q_d9');
-    // const q_d10 = formData.get('q_d10');
-    // const q_d11 = formData.get('q_d11');
-
-    // Envoi des données au serveur 
-const data = (NameInterviewer: document.querySelector('input[name="NameInterviewer"]').value,
-              DataSheetNumber: document.querySelector('input[name="DataSheetNumber"]').value,
-              QuestionNumber: document.querySelector('input[name="QuestionNumber"]').value,
-              Answer: document.querySelector('input[name="Answer"]').value)
-    // const data = {
-    //   enqueteur_nom: document.querySelector('input[name="enqueteur_nom"]').value,
-    //   quartier: document.querySelector('input[name="quartier"]').value,
-    //   q_d8: document.querySelector('input[name="q_d8"]:checked').value,
-    //   q_d9: document.querySelector('input[name="q_d9"]:checked').value,
-    //   q_d10: document.querySelector('textarea[name="q_d10"]').value,
-    //   q_d11: document.querySelector('input[name="q_d11"]:checked').value
-    // };
-
-    fetch('http://localhost:3000/responses', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+    fetch(`${serverUrl}/responses`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
+        alert('Questionnaire soumis avec succès !');
     })
     .catch((error) => {
-      console.error('Error:', error);
-    });
+        alert('Une erreur s\'est produite lors de la soumission du questionnaire.');
 
-    // Simuler l'envoi des données (exemple avec fetch API)
-    // fetch('/submit', {
-    //     method: 'POST',
-    //     body: formData,
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     alert('Merci pour vos réponses !');
-    //     // Réinitialiser le formulaire après soumission
-    //     document.getElementById('questionnaire-form').reset();
-    //     currentPage = 0;
-    //     pages.forEach(page => page.style.display = 'none');
-    //     document.getElementById('home-page').style.display = 'block';  // Retour à la page d'accueil
-    // })
-    // .catch(error => {
-    //     alert('Une erreur est survenue lors de l\'envoi.');
-    // });
+    });
 }
 
+// Skip to a specific page by ID
 function skipTo(pageId) {
-    // Récupérer toutes les pages
-    console.log('pageId', pageId);
-    for (let i = 0; i < totalPages; i++) {
-        if (document.querySelectorAll('.page')[i].id === pageId) {
-            currentPage = i;
-            break;
-        }
-    }
-    const pages = document.querySelectorAll('.question-page');
-
-    // document.getElementById(pageId).style.display = 'none';
-    pageHistory.push(currentPage);
-
-    // Masquer toutes les pages
-    pages.forEach(page => {
-        page.style.display = 'none';
-    });
-
-    // Afficher la page ciblée
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
+        pageHistory.push(currentPage);
+        if (currentPage >= 0 && currentPage < pages.length) {
+            pages[currentPage].style.display = 'none';
+        }
+        currentPage = Array.from(pages).indexOf(targetPage);
         targetPage.style.display = 'block';
-
-        // Mettre à jour currentPage avec l'index de la page ciblée
-        // currentPage = Array.from(pages).indexOf(targetPage);
-        // console.log('currentpage',currentPage)
-        // if (currentPage === -1) {
-        //     console.error(`Page avec l'ID "${pageId}" introuvable dans la liste des pages.`);
-        // }
     } else {
         console.error(`Page avec l'ID "${pageId}" introuvable.`);
     }
 }
 
-
-
+// Initialize the questionnaire on DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
-    pages.forEach((page, index) => {
+    const questionPages = document.querySelectorAll('.question-page');
+    pages.forEach((page, index) => {    
         if (index !== 0) {
             page.style.display = 'none';
         }
@@ -204,13 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Show the next page by ID
 function showNext(pageId) {
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
+    if (typeof pageId === 'string') {
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
         pages[currentPage].style.display = 'none';
         currentPage = Array.from(pages).indexOf(targetPage);
         targetPage.style.display = 'block';
     } else {
         console.error(`Page with ID "${pageId}" not found.`);
     }
+    }
 }
+
+
