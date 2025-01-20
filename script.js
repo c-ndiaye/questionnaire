@@ -102,10 +102,31 @@ function returnToHome() {
 }
 
 // Submit the form data to the server
+const serverUrl = 'http://localhost:3000';
+
 function submitForm(event) {
     event.preventDefault();
     const formData = new FormData(document.getElementById('questionnaire-form'));
-    const data = Object.fromEntries(formData.entries());
+    const data = {
+        interviewerName: formData.get('interviewerName'),
+        dataSheetNumber: formData.get('dataSheetNumber'),
+        createdAt: formData.get('createdAt'),
+        data: {}
+    };
+
+    formData.forEach((value, key) => {
+        if (key !== 'interviewerName' && key !== 'dataSheetNumber' && key !== 'createdAt') {
+            if (data.data[key]) {
+                if (Array.isArray(data.data[key])) {
+                    data.data[key].push(value);
+                } else {
+                    data.data[key] = [data.data[key], value];
+                }
+            } else {
+                data.data[key] = value;
+            }
+        }
+    });
 
     fetch(`${serverUrl}/responses`, {
         method: 'POST',
@@ -114,20 +135,18 @@ function submitForm(event) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Questionnaire soumis avec succès !');
-    })
-    .catch((error) => {
-        alert('Une erreur s\'est produite lors de la soumission du questionnaire.');
-
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Questionnaire soumis avec succès !');
+        })
+        .catch((error) => {
+            alert('Une erreur s\'est produite lors de la soumission du questionnaire.');
+        });
 }
 
 // Skip to a specific page by ID
@@ -148,7 +167,7 @@ function skipTo(pageId) {
 // Initialize the questionnaire on DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
     const questionPages = document.querySelectorAll('.question-page');
-    pages.forEach((page, index) => {    
+    pages.forEach((page, index) => {
         if (index !== 0) {
             page.style.display = 'none';
         }
@@ -167,13 +186,11 @@ function showNext(pageId) {
     if (typeof pageId === 'string') {
         const targetPage = document.getElementById(pageId);
         if (targetPage) {
-        pages[currentPage].style.display = 'none';
-        currentPage = Array.from(pages).indexOf(targetPage);
-        targetPage.style.display = 'block';
-    } else {
-        console.error(`Page with ID "${pageId}" not found.`);
-    }
+            pages[currentPage].style.display = 'none';
+            currentPage = Array.from(pages).indexOf(targetPage);
+            targetPage.style.display = 'block';
+        } else {
+            console.error(`Page with ID "${pageId}" not found.`);
+        }
     }
 }
-
-
