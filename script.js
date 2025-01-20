@@ -1,145 +1,196 @@
-let currentPageIndex = 0;
+let currentPage = 0;
 const pages = document.querySelectorAll('.page');
+const totalPages = pages.length;
+const pageHistory = [];
 
-function showPage(index) {
-    pages.forEach((page, i) => {
-        page.style.display = i === index ? 'block' : 'none';
-    });
+// Navigate to the next question or a specific question if jumpToQuestion is provided
+function nextQuestion(jumpToQuestion) {
+    const currentPageElement = pages[currentPage];
+    let currentPageJumpedIndex = -1;
 
-    // let currentPage = pages[currentPageIndex];
-    // let inputs = currentPage.querySelectorAll('input');
+    // Check if jumpToQuestion has a parentElement
+    if (jumpToQuestion && jumpToQuestion.parentElement) {
+        currentPageJumpedIndex = Array.from(pages).indexOf(jumpToQuestion.parentElement);
+    }
 
-    // for (let input of inputs) {
-    //     if (input.type === 'text' || input.type === 'number') {
-    //         if (input.value.trim() === '') {
-    //             input.style.borderColor =  "black";
-    //             return false;
-    //         }
-    //     } else if (input.type === 'radio') {
-    //         let radios = currentPage.querySelectorAll('input[type="radio"]');
-    //         let radioChecked = Array.from(radios).some(radio => radio.checked);
-    //         if (!radioChecked) {
-    //             input.style.borderColor = "black";
-    //             return false;
-    //         }
-    //     }
-    // }
-
-}
-
-function startQuestionnaire() {
-    currentPageIndex = 1;
-    showPage(currentPageIndex);
-}
-
-function nextQuestion(e, number) {    
-    if (!validateCurrentPage()) {
-        alert("Veuillez remplir tous les champs requis.");
+    // Validate the current page
+    if (!validatePage(currentPageElement)) {
         return;
     }
+    document.querySelector(".error").textContent = "";
 
+    // Hide the current page and update history
+    currentPageElement.style.display = 'none';
+    pageHistory.push(currentPage);
 
-    if (e !== undefined) {
-        if (number === undefined) number = 1;
-        console.log(e); // e.length == null ou undefined mais il devrait pas passer la dedans
-        for (var i = 0, length = e.length; i < length; i++) {
-            if (e[i].defaultValue == 'Non' || e[i].defaultValue == 'Ne sait pas') {
-                if (currentPageIndex < pages.length - 1) {
-                    currentPageIndex += number;
-                    showPage(currentPageIndex);
-                }
-            }
-            if (e[i].checked) {
-                break;
-            }
+    // Determine the next page to show
+    if (currentPageJumpedIndex !== -1) {
+        currentPage = currentPageJumpedIndex;
+    } else {
+        currentPage++;
+    }
+
+    // Show the next page if within bounds
+    if (currentPage < pages.length) {
+        pages[currentPage].style.display = 'block';
+    }
+}
+
+// Navigate to the previous question
+function prevQuestion() {
+    if (currentPage > 0) {
+        pages[currentPage].style.display = 'none';
+        currentPage = pageHistory.pop() || currentPage - 1;
+        pages[currentPage].style.display = 'block';
+    }
+}
+
+// Validate the current page's inputs
+function validatePage(page) {
+    const inputs = page.querySelectorAll('input');
+    let hasError = false;
+
+    // Special case for page "q_a11"
+    if (page.id === "q_a11") {
+        const textInputs = page.querySelectorAll('input[type="text"]');
+        if (Array.from(textInputs).some(input => input.value.trim() !== "")) {
+            return true; // Allow passing to the next question if at least one text input is filled
         }
     }
-        
 
-    if (currentPageIndex < pages.length - 1) {
-        currentPageIndex++;
-        showPage(currentPageIndex);
-    }
-}
-
-function prevQuestion() {
-    if (currentPageIndex > 1) {
-        currentPageIndex--;
-        showPage(currentPageIndex);
-    }
-}
-
-function collectResponses() {
-    const form = document.getElementById('questionnaire-form');
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => {
-        if (data[key]) {
-            if (!Array.isArray(data[key])) {
-                data[key] = [data[key]];
+    inputs.forEach(input => {
+        if ((input.type === 'number' || input.type === 'text' || input.type === 'textarea') && !input.value.trim()) {
+            hasError = true;
+        }
+        if (input.type === 'radio' || input.type === 'checkbox') {
+            const groupName = input.name;
+            const groupInputs = page.querySelectorAll(`input[name="${groupName}"]`);
+            if (!Array.from(groupInputs).some(a => a.checked)) {
+                hasError = true;
             }
-            data[key].push(value);
-        } else {
-            data[key] = value;
+        }
+        if (input.type === 'checkbox') {
+            if (!Array.from(inputs).some(a => a.checked)) {
+                hasError = true;
+            }
         }
     });
-    return data;
-}
 
-function finishQuestionnaire() {
-    currentPageIndex = pages.length - 1;
-    showPage(currentPageIndex);
-
-    const responses = collectResponses();
-    console.log(responses);
-
-    // fetch('https://votre-serveur.com/submit', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(responses)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log('Réponses envoyées avec succès:', data);
-    //     alert("Merci ! Vos réponses ont été soumises.");
-    // })
-    // .catch(error => {
-    //     console.error('Erreur lors de l\'envoi des réponses:', error);
-    //     alert("Une erreur est survenue lors de l'envoi des réponses. Veuillez réessayer.");
-    // });
-}
-
-function returnToHome() {
-    if (confirm("En retournant à la page d'accueil, les données du questionnaire en cours ne seront pas sauvegardées. Voulez-vous continuer ?")) {
-        currentPageIndex = 0;
-        showPage(currentPageIndex);
+    if (hasError) {
+        document.querySelector(".error").textContent = "Veuillez remplir tous les champs obligatoires.";
+        return false;
     }
-}
 
-function validateCurrentPage() {
-    let currentPage = pages[currentPageIndex];
-    let inputs = currentPage.querySelectorAll('input');
-
-    for (let input of inputs) {
-        if (input.type === 'text' || input.type === 'number') {
-            if (input.value.trim() === '') {
-                input.style.borderColor = "red";
-                return false;
-            }
-        } else if (input.type === 'radio') {
-            let radios = currentPage.querySelectorAll('input[type="radio"]');
-            let radioChecked = Array.from(radios).some(radio => radio.checked);
-            if (!radioChecked) {
-                input.style.borderColor = "red";
-                return false;
-            }
-        }
-    }
     return true;
 }
 
+// Start the questionnaire by showing the consent page
+function startQuestionnaire() {
+    document.getElementById('home-page').style.display = 'none';
+    document.getElementById('consent-page').style.display = 'block';
+    currentPage = 1;
+}
 
-// Initialisation
-showPage(currentPageIndex);
+// Return to the home page with a confirmation prompt
+function returnToHome() {
+    if (confirm("En retournant à la page d'accueil, les données du questionnaire en cours ne seront pas sauvegardées. Voulez-vous continuer ?")) {
+        document.querySelector(".error").textContent = "";
+        pages[currentPage].style.display = 'none';
+        currentPage = 0;
+        pages[currentPage].style.display = 'block';
+    }
+}
+
+// Submit the form data to the server
+const serverUrl = 'http://localhost:3000';
+
+function submitForm(event) {
+    event.preventDefault();
+    const formData = new FormData(document.getElementById('questionnaire-form'));
+    const data = {
+        interviewerName: formData.get('interviewerName'),
+        dataSheetNumber: formData.get('dataSheetNumber'),
+        createdAt: formData.get('createdAt'),
+        data: {}
+    };
+
+    formData.forEach((value, key) => {
+        if (key !== 'interviewerName' && key !== 'dataSheetNumber' && key !== 'createdAt') {
+            if (data.data[key]) {
+                if (Array.isArray(data.data[key])) {
+                    data.data[key].push(value);
+                } else {
+                    data.data[key] = [data.data[key], value];
+                }
+            } else {
+                data.data[key] = value;
+            }
+        }
+    });
+
+    fetch(`${serverUrl}/responses`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Questionnaire soumis avec succès !');
+        })
+        .catch((error) => {
+            alert('Une erreur s\'est produite lors de la soumission du questionnaire.');
+        });
+}
+
+// Skip to a specific page by ID
+function skipTo(pageId) {
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        pageHistory.push(currentPage);
+        if (currentPage >= 0 && currentPage < pages.length) {
+            pages[currentPage].style.display = 'none';
+        }
+        currentPage = Array.from(pages).indexOf(targetPage);
+        targetPage.style.display = 'block';
+    } else {
+        console.error(`Page avec l'ID "${pageId}" introuvable.`);
+    }
+}
+
+// Initialize the questionnaire on DOM content loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const questionPages = document.querySelectorAll('.question-page');
+    pages.forEach((page, index) => {
+        if (index !== 0) {
+            page.style.display = 'none';
+        }
+    });
+
+    const form = document.getElementById('questionnaire-form');
+    if (form) {
+        form.addEventListener('submit', submitForm);
+    } else {
+        console.error('Le formulaire avec l\'ID "questionnaire-form" est introuvable.');
+    }
+});
+
+// Show the next page by ID
+function showNext(pageId) {
+    if (typeof pageId === 'string') {
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            pages[currentPage].style.display = 'none';
+            currentPage = Array.from(pages).indexOf(targetPage);
+            targetPage.style.display = 'block';
+        } else {
+            console.error(`Page with ID "${pageId}" not found.`);
+        }
+    }
+}
